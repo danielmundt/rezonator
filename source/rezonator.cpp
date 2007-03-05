@@ -1,14 +1,4 @@
 //-------------------------------------------------------------------------------------------------------
-// VST Plug-Ins SDK
-// Version 2.4		$Date: 2006/11/13 09:08:27 $
-//
-// Category     : VST 2.x SDK Samples
-// Filename     : again.cpp
-// Created by   : Steinberg Media Technologies
-// Description  : Stereo plugin which applies Gain [-oo, 0dB]
-//
-// © 2006, Steinberg Media Technologies, All Rights Reserved
-//-------------------------------------------------------------------------------------------------------
 
 #include "rezonator.h"
 #include "common.h"
@@ -101,7 +91,7 @@ bool Rezonator::getProductString (char* text)
 //------------------------------------------------------------------------
 bool Rezonator::getVendorString (char* text)
 {
-	vst_strncpy (text, "Steinberg Media Technologies", kVstMaxVendorStrLen);
+	vst_strncpy (text, "TAGEZ Audio", kVstMaxVendorStrLen);
 	return true;
 }
 
