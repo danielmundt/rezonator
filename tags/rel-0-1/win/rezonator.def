@@ -1,0 +1,7 @@
+LIBRARY rezonator BASE=0x10000000
+DESCRIPTION "Rezonator VST Plugin"
+VERSION 1.0
+
+EXPORTS
+	main = MAIN
+	VSTPluginMain
