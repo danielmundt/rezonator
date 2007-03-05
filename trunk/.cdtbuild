@@ -29,7 +29,7 @@
 <macros/>
 </toolChain>
 <resourceConfiguration exclude="false" id="cdt.managedbuild.config.gnu.cygwin.so.debug.1584074079./rezonator/win/info.rc" name="info.rc" rcbsApplicability="override" resourcePath="/rezonator/win/info.rc" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.975633190">
-<tool announcement="Invoking: Resource Custom Build Step" command="windres -i &quot;${workspace_loc:/rezonator}\win\info.rc&quot; -o &quot;${workspace_loc:/rezonator}\Debug\win\info.o&quot;" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.975633190" name="Resource Custom Build Step">
+<tool announcement="Invoking: Resource Custom Build Step" command="windres -i &quot;${project_loc}\win\info.rc&quot; -o &quot;${project_loc}\Debug\win\info.o&quot;" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.975633190" name="Resource Custom Build Step">
 <inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.761195815" name="Resource Custom Build Step Input Type">
 <additionalInput kind="additionalinputdependency" paths=""/>
 </inputType>
@@ -62,7 +62,7 @@
 <macros/>
 </toolChain>
 <resourceConfiguration exclude="false" id="cdt.managedbuild.config.gnu.cygwin.so.release.283900214./rezonator/win/info.rc" name="info.rc" rcbsApplicability="override" resourcePath="/rezonator/win/info.rc" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.1959398902">
-<tool announcement="Invoking: Resource Custom Build Step" command="windres -i &quot;${workspace_loc:/rezonator}\win\info.rc&quot; -o &quot;${workspace_loc:/rezonator}\Release\win\info.o&quot;" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1959398902" name="Resource Custom Build Step">
+<tool announcement="Invoking: Resource Custom Build Step" command="windres -i &quot;${project_loc}\win\info.rc&quot; -o &quot;${project_loc}\Release\win\info.o&quot;" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1959398902" name="Resource Custom Build Step">
 <inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.852944957" name="Resource Custom Build Step Input Type">
 <additionalInput kind="additionalinputdependency" paths=""/>
 </inputType>
