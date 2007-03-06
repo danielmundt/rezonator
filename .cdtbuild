@@ -23,7 +23,7 @@
 <option id="gnu.cpp.link.option.other.1459902729" superClass="gnu.cpp.link.option.other" valueType="stringList">
 <listOptionValue builtIn="false" value=" &quot;${workspace_loc:/rezonator/win/rezonator.def}&quot;"/>
 </option>
-<option id="gnu.cpp.link.option.userobjs.924546555" superClass="gnu.cpp.link.option.userobjs" valueType="userObjs"/>
+<option id="gnu.cpp.link.option.userobjs.924546555" superClass="gnu.cpp.link.option.userobjs"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.so.debug.1633194365" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.so.debug"/>
 <macros/>
