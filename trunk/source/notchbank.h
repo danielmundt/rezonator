@@ -18,7 +18,7 @@
 #ifndef NOTCHBANK_H_
 #define NOTCHBANK_H_
 
-namespace rezonator
+namespace Rezonator
 {
 
 class Notchbank

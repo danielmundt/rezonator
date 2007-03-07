@@ -38,7 +38,7 @@ public:
 	Notch();
 	virtual ~Notch();
 	
-	void init( double theta, double _coeff );
+	void init( double theta, double coeff );
 };
 
 }
