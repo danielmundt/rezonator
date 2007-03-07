@@ -3,55 +3,54 @@
 #include "rezonator.h"
 #include "common.h"
 
-#define AGAIN_ID	VST_MAKE_ID( 'R', 'e', 'z', '1' )
+#define AGAIN_ID	VST_MAKE_ID('R', 'e', 'z', '1')
 
 //-------------------------------------------------------------------------------------------------------
-AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
+AudioEffect* createEffectInstance(audioMasterCallback audioMaster)
 {
-	return new Rezonator (audioMaster);
+	return new Rezonator::Rezonator(audioMaster);
 }
 
 //-------------------------------------------------------------------------------------------------------
-Rezonator::Rezonator (audioMasterCallback audioMaster)
-: AudioEffectX (audioMaster, 1, 1)	// 1 program, 1 parameter only
+Rezonator::Rezonator(audioMasterCallback audioMaster)
+: AudioEffectX(audioMaster, 1, 1)	// 1 program, 1 parameter only
 {
-	setNumInputs (2);		// stereo in
-	setNumOutputs (2);		// stereo out
-//	setUniqueID ('Gain');	// identify
-	setUniqueID (AGAIN_ID);	// identify
-	canProcessReplacing ();	// supports replacing output
-	canDoubleReplacing ();	// supports double precision processing
+	setNumInputs(2);		//<! stereo in
+	setNumOutputs(2);		//<! stereo out
+	setUniqueID(AGAIN_ID);	//<! identify
+	canProcessReplacing();	//<! supports replacing output
+	canDoubleReplacing();	//<! supports double precision processing
 
-	fGain = 1.f;			// default to 0 dB
-	vst_strncpy (programName, "Default", kVstMaxProgNameLen);	// default program name
+	fGain = 1.f;			//<! default to 0 dB
+	vst_strncpy(programName, "Default", kVstMaxProgNameLen);	// <!default program name
 }
 
 //-------------------------------------------------------------------------------------------------------
-Rezonator::~Rezonator ()
+Rezonator::~Rezonator()
 {
 	// nothing to do here
 }
 
 //-------------------------------------------------------------------------------------------------------
-void Rezonator::setProgramName (char* name)
+void Rezonator::setProgramName(char* name)
 {
-	vst_strncpy (programName, name, kVstMaxProgNameLen);
+	vst_strncpy(programName, name, kVstMaxProgNameLen);
 }
 
 //-----------------------------------------------------------------------------------------
-void Rezonator::getProgramName (char* name)
+void Rezonator::getProgramName(char* name)
 {
-	vst_strncpy (name, programName, kVstMaxProgNameLen);
+	vst_strncpy(name, programName, kVstMaxProgNameLen);
 }
 
 //-----------------------------------------------------------------------------------------
-void Rezonator::setParameter (VstInt32 index, float value)
+void Rezonator::setParameter(VstInt32 index, float value)
 {
 	fGain = value;
 }
 
 //-----------------------------------------------------------------------------------------
-float Rezonator::getParameter (VstInt32 index)
+float Rezonator::getParameter(VstInt32 index)
 {
 	return fGain;
 }
@@ -63,46 +62,47 @@ void Rezonator::getParameterName (VstInt32 index, char* label)
 }
 
 //-----------------------------------------------------------------------------------------
-void Rezonator::getParameterDisplay (VstInt32 index, char* text)
+void Rezonator::getParameterDisplay(VstInt32 index, char* text)
 {
-	dB2string (fGain, text, kVstMaxParamStrLen);
+	dB2string(fGain, text, kVstMaxParamStrLen);
 }
 
 //-----------------------------------------------------------------------------------------
-void Rezonator::getParameterLabel (VstInt32 index, char* label)
+void Rezonator::getParameterLabel(VstInt32 index, char* label)
 {
-	vst_strncpy (label, "dB", kVstMaxParamStrLen);
+	vst_strncpy(label, "dB", kVstMaxParamStrLen);
 }
 
 //------------------------------------------------------------------------
-bool Rezonator::getEffectName (char* name)
+bool Rezonator::getEffectName(char* name)
 {
 	vst_strncpy (name, "Gain", kVstMaxEffectNameLen);
 	return true;
 }
 
 //------------------------------------------------------------------------
-bool Rezonator::getProductString (char* text)
+bool Rezonator::getProductString(char* text)
 {
-	vst_strncpy (text, "Gain", kVstMaxProductStrLen);
+	vst_strncpy(text, "Gain", kVstMaxProductStrLen);
 	return true;
 }
 
 //------------------------------------------------------------------------
-bool Rezonator::getVendorString (char* text)
+bool Rezonator::getVendorString(char* text)
 {
-	vst_strncpy (text, "TAGEZ Audio", kVstMaxVendorStrLen);
+	vst_strncpy(text, "TAGEZ Audio", kVstMaxVendorStrLen);
 	return true;
 }
 
 //-----------------------------------------------------------------------------------------
-VstInt32 Rezonator::getVendorVersion ()
+VstInt32 Rezonator::getVendorVersion()
 { 
 	return 1000; 
 }
 
 //-----------------------------------------------------------------------------------------
-void Rezonator::processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames)
+void Rezonator::processReplacing(float** inputs, float** outputs,
+	VstInt32 sampleFrames)
 {
     float* in1  =  inputs[0];
     float* in2  =  inputs[1];
@@ -117,7 +117,8 @@ void Rezonator::processReplacing (float** inputs, float** outputs, VstInt32 samp
 }
 
 //-----------------------------------------------------------------------------------------
-void Rezonator::processDoubleReplacing (double** inputs, double** outputs, VstInt32 sampleFrames)
+void Rezonator::processDoubleReplacing(double** inputs, double** outputs,
+	VstInt32 sampleFrames)
 {
     double* in1  =  inputs[0];
     double* in2  =  inputs[1];

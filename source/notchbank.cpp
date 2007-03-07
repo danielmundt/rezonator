@@ -17,7 +17,7 @@
 
 #include "notchbank.h"
 
-namespace rezonator
+namespace Rezonator
 {
 
 Notchbank::Notchbank()
