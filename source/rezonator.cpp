@@ -76,14 +76,14 @@ void Rezonator::getParameterLabel(VstInt32 index, char* label)
 //------------------------------------------------------------------------
 bool Rezonator::getEffectName(char* name)
 {
-	vst_strncpy (name, "Gain", kVstMaxEffectNameLen);
+	vst_strncpy(name, "Rezonator", kVstMaxEffectNameLen);
 	return true;
 }
 
 //------------------------------------------------------------------------
 bool Rezonator::getProductString(char* text)
 {
-	vst_strncpy(text, "Gain", kVstMaxProductStrLen);
+	vst_strncpy(text, "Rezonator", kVstMaxProductStrLen);
 	return true;
 }
 
