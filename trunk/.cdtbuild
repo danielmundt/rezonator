@@ -9,6 +9,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.debug.821112203" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.debug">
 <option id="gnu.cpp.compiler.option.include.paths.2114428248" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/rezonator}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/rezonator/source}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/rezonator/vstsdk}&quot;"/>
 </option>
 </tool>
