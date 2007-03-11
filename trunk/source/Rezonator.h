@@ -3,6 +3,9 @@
 #define REZONATOR_H_
 
 #include "public.sdk/source/vst2.x/audioeffectx.h"
+#include "Notchbank.h"
+
+using namespace Rezonator;
 
 class Rezonator : public AudioEffectX
 {
@@ -35,6 +38,9 @@ public:
 protected:
 	float fGain;
 	char programName[ kVstMaxProgNameLen + 1 ];
+	
+private:
+	Notchbank notchbank;
 };
 
 #endif /*REZONATOR_H_*/

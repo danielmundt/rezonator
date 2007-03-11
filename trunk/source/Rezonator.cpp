@@ -88,30 +88,35 @@ VstInt32 Rezonator::getVendorVersion()
 void Rezonator::processReplacing( float** inputs, float** outputs,
 	VstInt32 sampleFrames )
 {
-    float* in1  =  inputs[ 0 ];
-    float* in2  =  inputs[ 1 ];
-    float* out1 = outputs[ 0 ];
-    float* out2 = outputs[ 1 ];
-
-    while( --sampleFrames >= 0 )
-    {
-        (*out1++) = (*in1++) * fGain;
-        (*out2++) = (*in2++) * fGain;
-    }
+//	float* in1  =  inputs[ 0 ];
+//	float* in2  =  inputs[ 1 ];
+//	float* out1 = outputs[ 0 ];
+//	float* out2 = outputs[ 1 ];
+//	
+//	while( --sampleFrames >= 0 )
+//	{
+//		(*out1++) = (*in1++) * fGain;
+//		(*out2++) = (*in2++) * fGain;
+//	}
+	
+	notchbank.process( inputs, outputs, sampleFrames );
 }
 
 void Rezonator::processDoubleReplacing( double** inputs, double** outputs,
 	VstInt32 sampleFrames )
 {
-    double* in1  =  inputs[ 0 ];
-    double* in2  =  inputs[ 1 ];
-    double* out1 = outputs[ 0 ];
-    double* out2 = outputs[ 1 ];
-	double dGain = fGain;
+//	double* in1  =  inputs[ 0 ];
+//	double* in2  =  inputs[ 1 ];
+//	double* out1 = outputs[ 0 ];
+//	double* out2 = outputs[ 1 ];
+//	double dGain = fGain;
+//	
+//	while( --sampleFrames >= 0 )
+//	{
+//		(*out1++) = (*in1++) * dGain;
+//		(*out2++) = (*in2++) * dGain;
+//	}
 
-    while( --sampleFrames >= 0 )
-    {
-        (*out1++) = (*in1++) * dGain;
-        (*out2++) = (*in2++) * dGain;
-    }
+	notchbank.process( ( float** )( inputs ), ( float** )( outputs ), 
+		sampleFrames );
 }

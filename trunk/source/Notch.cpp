@@ -15,8 +15,6 @@
 // with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-#include <math.h>
-
 #include "Notch.h"
 
 namespace Rezonator
@@ -24,6 +22,11 @@ namespace Rezonator
 
 Notch::Notch()
 {
+}
+
+Notch::Notch( double theta, double coeff )
+{
+	init( theta, coeff );
 }
 
 Notch::~Notch()
@@ -40,8 +43,18 @@ void Notch::init( double theta, double _coeff )
 	sa = 0.0;
 	ca = 1.0;
 
-	accum = 0.0;
-	remod = 0.0;
+    for ( int i = 0; i < 2; i++ )
+    {
+        accum[i] = 0.0;
+        remod[i] = 0.0;
+    }
+}
+
+void Notch::update()
+{
+	double delta_ca = alpha * ca + beta * sa;
+	sa -= ( alpha * sa - beta * ca);
+	ca -= delta_ca;	
 }
 
 }
