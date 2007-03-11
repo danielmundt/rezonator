@@ -18,10 +18,12 @@
 #ifndef NOTCHBANK_H_
 #define NOTCHBANK_H_
 
+#include "IEffect.h"
+
 namespace Rezonator
 {
 
-class Notchbank
+class Notchbank : public IEffect
 {
 public:
 	Notchbank();

@@ -1,7 +1,7 @@
 #ifndef BRICKWALL_H_
 #define BRICKWALL_H_
 
-namespace rezonator
+namespace Rezonator
 {
 
 class Brickwall

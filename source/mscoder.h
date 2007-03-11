@@ -1,7 +1,7 @@
 #ifndef MSCODER_H_
 #define MSCODER_H_
 
-namespace rezonator
+namespace Rezonator
 {
 
 class MsCoder
