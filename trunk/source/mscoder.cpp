@@ -1,6 +1,6 @@
 #include "mscoder.h"
 
-namespace rezonator
+namespace Rezonator
 {
 
 MsCoder::MsCoder()

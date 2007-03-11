@@ -1,6 +1,6 @@
 #include "brickwall.h"
 
-namespace rezonator
+namespace Rezonator
 {
 
 Brickwall::Brickwall()
