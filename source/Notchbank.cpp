@@ -17,15 +17,85 @@
 
 #include "notchbank.h"
 
+#define  DDC_PI  ((double)( 3.14159265358979323846 ))
+
 namespace Rezonator
 {
 
 Notchbank::Notchbank()
 {
+	int numNotches = 12;
+	
+	notch = new Notch[ numNotches ];
+
+	halfLife1 = 10;
+	halfLife1 = 10;	
+	sr = 44100;
+
+    lambda1 = exp ( -log( 2.0 ) / ( sr * halfLife1 * 0.001 ) );
+    kappa1 = 1.0 - lambda1;
+
+    lambda2 = exp ( -log( 2.0 ) / ( sr * halfLife2 * 0.001 ) );
+    kappa2 = 1.0 - lambda2;
+    
+    double f_exp = 1.0;
+    double loFreq = 440;
+    double hiFreq = 2000;
+
+    const double df = exp ( log( hiFreq / loFreq ) / double( numNotches - 1 ) );
+    double cf = 1.0;
+    const double loRadsPerSample = loFreq * ( 2.0 * DDC_PI ) / sr;
+    
+    for ( int j = 0; j < numNotches; j++ )
+    {
+        notch[j].init ( cf * loRadsPerSample, pow( cf, f_exp ) );
+        cf *= df;
+    }
 }
 
 Notchbank::~Notchbank()
 {
+}
+
+void Notchbank::process( float** inputs, float** outputs,
+	VstInt32 sampleFrames )
+{
+	int numChannels = 2;
+	int numNotches = 12;
+	
+	for ( int i = 0; i < sampleFrames; i += numChannels )
+	{
+		for ( int c = 0; c < numChannels; c++ )
+		{
+			double y = 0.0;  // output value
+			double x = double( inputs[ c ][ i ] );
+			
+			for ( int j = 0; j < numNotches; j++ )
+			{
+				Notch &nn = notch[ j ];
+				double &accum = nn.accum[ c ];
+				double &remod = nn.remod[ c ];
+				accum = accum * lambda1 + x * nn.ca * nn.coeff * kappa1;
+				remod = remod * lambda2 + accum * kappa2;
+				y += nn.sa * remod;
+			}
+			
+			outputs[ c ][ i ] = float( y );
+		}
+			
+		// Update trig functions
+		/*for ( int j = 0; j < numNotches; j++ )
+		{
+			Notch &nn = notch[ j ];
+			double delta_ca = nn.alpha * nn.ca + nn.beta * nn.sa;
+			nn.sa -= (nn.alpha * nn.sa - nn.beta * nn.ca);
+			nn.ca -= delta_ca;
+		}*/
+		for ( int j = 0; j < numNotches; j++ )
+		{
+			notch[ j ].update();
+		}
+	}
 }
 
 }

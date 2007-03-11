@@ -18,15 +18,20 @@
 #ifndef NOTCH_H_
 #define NOTCH_H_
 
+#include <math.h>
+
+#include "public.sdk/source/vst2.x/audioeffectx.h"
+#include "IEffect.h"
+
 namespace Rezonator
 {
 
 class Notch
 {
-private:
+public:
 	double coeff;		//!< attenuation coefficient for demod
-	double accum;		//!< demod accumulators (one per channel)
-	double remod;		//!< remod accumulators (one per channel)
+	double accum[ 2 ];	//!< demod accumulators (one per channel)
+	double remod[ 2 ];	//!< remod accumulators (one per channel)
 
 	double alpha;		//!< recurrence relation constant
 	double beta;		//!< recurrence relation constant
@@ -34,11 +39,12 @@ private:
 	double ca;			//!< current cos(n*theta)
 	double sa;			//!< current sin(n*theta)
 
-public:
 	Notch();
+	Notch( double theta, double coeff );
 	virtual ~Notch();
 	
 	void init( double theta, double coeff );
+	void update();
 };
 
 }

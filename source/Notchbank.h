@@ -18,16 +18,34 @@
 #ifndef NOTCHBANK_H_
 #define NOTCHBANK_H_
 
-#include "IEffect.h"
+#include <math.h>
+
+//#include "IEffect.h"
+#include "Notch.h"
 
 namespace Rezonator
 {
 
-class Notchbank : public IEffect
+class Notchbank
 {
+private:
+	Notch* notch;
+	
+	double halfLife1;
+	double halfLife2;
+	double sr;
+
+    double lambda1;
+    double kappa1;
+
+    double lambda2;
+    double kappa2;
+	
 public:
 	Notchbank();
 	virtual ~Notchbank();
+	
+	void process( float** inputs, float** outputs, VstInt32 sampleFrames );
 };
 
 }
