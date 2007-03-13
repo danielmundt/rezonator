@@ -4,11 +4,6 @@
 
 #define AGAIN_ID	VST_MAKE_ID( 'R', 'e', 'z', '1' )
 
-AudioEffect* createEffectInstance( audioMasterCallback audioMaster )
-{
-	return new Rezonator::Rezonator( audioMaster );
-}
-
 Rezonator::Rezonator( audioMasterCallback audioMaster )
 	: AudioEffectX( audioMaster, 1, 1 )	// 1 program, 1 parameter only
 {
