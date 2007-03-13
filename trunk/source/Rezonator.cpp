@@ -7,13 +7,13 @@
 Rezonator::Rezonator( audioMasterCallback audioMaster )
 	: AudioEffectX( audioMaster, 1, 1 )	// 1 program, 1 parameter only
 {
-	setNumInputs(2);		//<! stereo in
-	setNumOutputs(2);		//<! stereo out
-	setUniqueID(AGAIN_ID);	//<! identify
-	canProcessReplacing();	//<! supports replacing output
-	canDoubleReplacing();	//<! supports double precision processing
+	setNumInputs( 2 );			//<! stereo in
+	setNumOutputs( 2 );			//<! stereo out
+	setUniqueID( AGAIN_ID );	//<! identify
+	canProcessReplacing();		//<! supports replacing output
+	canDoubleReplacing();		//<! supports double precision processing
 
-	fGain = 1.f;			//<! default to 0 dB
+	fGain = 1.f;				//<! default to 0 dB
 	vst_strncpy( programName, "Default", kVstMaxProgNameLen );	// <!default program name
 }
 
@@ -95,6 +95,7 @@ void Rezonator::processReplacing( float** inputs, float** outputs,
 //	}
 	
 	notchbank.process( inputs, outputs, sampleFrames );
+	brickwall.process( inputs, outputs, sampleFrames );
 }
 
 void Rezonator::processDoubleReplacing( double** inputs, double** outputs,
@@ -113,5 +114,7 @@ void Rezonator::processDoubleReplacing( double** inputs, double** outputs,
 //	}
 
 	notchbank.process( ( float** )( inputs ), ( float** )( outputs ), 
+		sampleFrames );
+	brickwall.process( ( float** )( inputs ), ( float** )( outputs ), 
 		sampleFrames );
 }

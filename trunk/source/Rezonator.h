@@ -4,6 +4,7 @@
 
 #include "public.sdk/source/vst2.x/audioeffectx.h"
 #include "Notchbank.h"
+#include "Brickwall.h"
 
 using namespace Rezonator;
 
@@ -41,6 +42,7 @@ protected:
 	
 private:
 	Notchbank notchbank;
+	Brickwall brickwall;
 };
 
 #endif /*REZONATOR_H_*/
