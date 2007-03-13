@@ -32,6 +32,9 @@ class Notchbank : IEffect
 private:
 	Notch* notch;
 	
+	int numChannels;
+	int numNotches;
+	
 	double halfLife1;
 	double halfLife2;
 	double sr;
