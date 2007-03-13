@@ -24,26 +24,40 @@ namespace Rezonator
 
 class RezonatorProgram
 {
-private:	
-	float inGain;
-	float outGain;
-	char name[ 24 ];
-	
 public:
 	enum ProgramParameters
 	{
 		// global
-		NumPrograms = 16,
+		kNumPrograms = 16,
 	
-		//pParameters tags
-		InGain = 0,
-		OutGain,
+		// common parameters tags
+		kInGain = 0,
+		kWetDry,
+		kOutGain,
+		
+		// notch specific tags
+		kMidNotchFreq,
+		kMidNotchActive,
+		kMidNotchGain,
+		
+		kSideNotchFreq,
+		kSideNotchActive,
+		kSideNotchGain,
 	
-		NumParams
+		kNumParams
 	};
 
 	RezonatorProgram();
 	virtual ~RezonatorProgram();
+
+private:	
+	float fInGain;
+	float fWetDry;
+	float fOutGain;
+	char name[ 24 ];
+	
+	// for furture extension
+	float freserved[32];
 };
 
 }

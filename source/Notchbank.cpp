@@ -25,9 +25,10 @@ namespace Rezonator
 
 Notchbank::Notchbank()
 {
-	int numNotches = 6;
-	
 	notch = new Notch[ numNotches ];
+
+	numChannels = 2;
+	numNotches = 12;
 
 	halfLife1 = 50;
 	halfLife2 = 50;	
@@ -61,18 +62,14 @@ Notchbank::~Notchbank()
 void Notchbank::process( float** inputs, float** outputs,
 	VstInt32 sampleFrames )
 {
-	int numChannels = 2;
-	int numNotches = 6;
-	
-	//for ( int i = 0; i < sampleFrames; i += numChannels )
-	for ( int i = 0; i < sampleFrames; i++ )
+	for( int i = 0; i < sampleFrames; i++ )
 	{
-		for ( int c = 0; c < numChannels; c++ )
+		for( int c = 0; c < numChannels; c++ )
 		{
-			double y = 0.0;  // output value
+			double y = 0.0; // output value
 			double x = double( inputs[ c ][ i ] );
 			
-			for ( int j = 0; j < numNotches; j++ )
+			for( int j = 0; j < numNotches; j++ )
 			{
 				Notch &nn = notch[ j ];
 				double &accum = nn.accum[ c ];
@@ -81,19 +78,12 @@ void Notchbank::process( float** inputs, float** outputs,
 				remod = remod * lambda2 + accum * kappa2;
 				y += nn.sa * remod;
 			}
-			
+				
 			outputs[ c ][ i ] = float( y );
 		}
 			
 		// Update trig functions
-		/*for ( int j = 0; j < numNotches; j++ )
-		{
-			Notch &nn = notch[ j ];
-			double delta_ca = nn.alpha * nn.ca + nn.beta * nn.sa;
-			nn.sa -= (nn.alpha * nn.sa - nn.beta * nn.ca);
-			nn.ca -= delta_ca;
-		}*/
-		for ( int j = 0; j < numNotches; j++ )
+		for( int j = 0; j < numNotches; j++ )
 		{
 			notch[ j ].update();
 		}
