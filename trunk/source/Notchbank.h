@@ -20,13 +20,13 @@
 
 #include <math.h>
 
-//#include "IEffect.h"
+#include "IEffect.h"
 #include "Notch.h"
 
 namespace Rezonator
 {
 
-class Notchbank
+class Notchbank : IEffect
 {
 private:
 	Notch* notch;

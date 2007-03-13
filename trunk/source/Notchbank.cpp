@@ -24,12 +24,12 @@ namespace Rezonator
 
 Notchbank::Notchbank()
 {
-	int numNotches = 12;
+	int numNotches = 6;
 	
 	notch = new Notch[ numNotches ];
 
-	halfLife1 = 10;
-	halfLife1 = 10;	
+	halfLife1 = 50;
+	halfLife2 = 50;	
 	sr = 44100;
 
     lambda1 = exp ( -log( 2.0 ) / ( sr * halfLife1 * 0.001 ) );
@@ -39,8 +39,8 @@ Notchbank::Notchbank()
     kappa2 = 1.0 - lambda2;
     
     double f_exp = 1.0;
-    double loFreq = 440;
-    double hiFreq = 2000;
+    double loFreq = 50;
+    double hiFreq = 880;
 
     const double df = exp ( log( hiFreq / loFreq ) / double( numNotches - 1 ) );
     double cf = 1.0;
@@ -61,9 +61,10 @@ void Notchbank::process( float** inputs, float** outputs,
 	VstInt32 sampleFrames )
 {
 	int numChannels = 2;
-	int numNotches = 12;
+	int numNotches = 6;
 	
-	for ( int i = 0; i < sampleFrames; i += numChannels )
+	//for ( int i = 0; i < sampleFrames; i += numChannels )
+	for ( int i = 0; i < sampleFrames; i++ )
 	{
 		for ( int c = 0; c < numChannels; c++ )
 		{

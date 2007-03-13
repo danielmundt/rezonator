@@ -21,7 +21,6 @@
 #include <math.h>
 
 #include "public.sdk/source/vst2.x/audioeffectx.h"
-#include "IEffect.h"
 
 namespace Rezonator
 {
