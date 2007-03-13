@@ -11,4 +11,10 @@ Brickwall::~Brickwall()
 {
 }
 
+void Brickwall::process( float** inputs, float** outputs,
+	VstInt32 sampleFrames )
+{
+	
+}
+
 }
