@@ -9,9 +9,10 @@ namespace Rezonator
 class IEffect
 {
 public:
-	virtual ~IEffect();
+	virtual ~IEffect() {};
 	
-	virtual void process( float** inputs, float** outputs, VstInt32 sampleFrames ) = 0;
+	virtual void process( float** inputs, float** outputs,
+		VstInt32 sampleFrames ) = 0;
 };
 
 }
