@@ -37,17 +37,17 @@ Notch::~Notch()
 void Notch::init( double _theta, double _coeff )
 {
 	coeff = _coeff;
-	alpha = sin( 0.5 * _theta );
-	alpha = 2.0 * alpha * alpha;
+	alpha = sin( 0.5f * _theta );
+	alpha = 2.0f * alpha * alpha;
 	beta  = sin( _theta );
 	
-	sa = 0.0;
-	ca = 1.0;
+	sa = 0.0f;
+	ca = 1.0f;
 
     for ( int i = 0; i < 2; i++ )
     {
-        accum[i] = 0.0;
-        remod[i] = 0.0;
+        accum[ i ] = 0.0f;
+        remod[ i ] = 0.0f;
     }
 }
 
