@@ -34,12 +34,12 @@ Notch::~Notch()
 {
 }
 
-void Notch::init( double theta, double _coeff )
+void Notch::init( double _theta, double _coeff )
 {
 	coeff = _coeff;
-	alpha = sin( 0.5 * theta );
+	alpha = sin( 0.5 * _theta );
 	alpha = 2.0 * alpha * alpha;
-	beta  = sin( theta );
+	beta  = sin( _theta );
 	
 	sa = 0.0;
 	ca = 1.0;
