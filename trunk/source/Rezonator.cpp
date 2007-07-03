@@ -106,7 +106,6 @@ void Rezonator::processReplacing( float** inputs, float** outputs,
 	float* out2 = outputs[ 1 ];
 
 	notchbank.process( inputs, outputs, sampleFrames );
-	brickwall.process( inputs, outputs, sampleFrames );
 
 	while( --sampleFrames >= 0 )
 	{
@@ -126,8 +125,6 @@ void Rezonator::processDoubleReplacing( double** inputs, double** outputs,
 	
 	notchbank.process( ( float** )( inputs ), ( float** )( outputs ), 
 		sampleFrames );
-	brickwall.process( ( float** )( inputs ), ( float** )( outputs ), 
-		sampleFrames );
 
 	while( --sampleFrames >= 0 )
 	{
@@ -135,3 +132,14 @@ void Rezonator::processDoubleReplacing( double** inputs, double** outputs,
 		(*out2++) = (*in2++) * dGain;
 	}
 }
+
+/* typedef int aint __attribute__ ((__aligned__(16)));
+void foo (int n, aint * p, aint * q) {
+
+   // feature: support for (aligned) pointer accesses.
+   while (n--)
+   {
+      *p++ = *q++;
+   }
+} */
+
