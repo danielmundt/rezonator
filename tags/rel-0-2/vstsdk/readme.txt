@@ -1,0 +1,1 @@
+Put the "pluginterfaces" and "public.sdk" folder from VST SDK 2.4 (REV 2) here.
