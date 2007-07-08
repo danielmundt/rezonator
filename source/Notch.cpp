@@ -54,7 +54,7 @@ void Notch::init( double _theta, double _coeff )
 void Notch::update()
 {
 	double delta_ca = alpha * ca + beta * sa;
-	sa -= ( alpha * sa - beta * ca);
+	sa -= ( alpha * sa - beta * ca );
 	ca -= delta_ca;	
 }
 

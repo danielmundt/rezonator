@@ -49,6 +49,7 @@ public:
 	Notchbank();
 	virtual ~Notchbank();
 	
+	void init();
 	void process( float** inputs, float** outputs, VstInt32 sampleFrames );
 };
 
