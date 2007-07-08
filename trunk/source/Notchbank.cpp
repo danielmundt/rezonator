@@ -33,30 +33,34 @@ Notchbank::Notchbank()
 	halfLife1 = 50;
 	halfLife2 = 50;	
 	sr = 44100;
+}
 
-    lambda1 = exp ( -log( 2.0 ) / ( sr * halfLife1 * 0.001 ) );
+Notchbank::~Notchbank()
+{
+	delete[] notch;
+}
+
+void Notchbank::init()
+{
+    lambda1 = exp( -log( 2.0 ) / ( sr * halfLife1 * 0.001 ) );
     kappa1 = 1.0 - lambda1;
 
-    lambda2 = exp ( -log( 2.0 ) / ( sr * halfLife2 * 0.001 ) );
+    lambda2 = exp( -log( 2.0 ) / ( sr * halfLife2 * 0.001 ) );
     kappa2 = 1.0 - lambda2;
     
     double f_exp = 1.0;
     double loFreq = 50;
     double hiFreq = 880;
 
-    const double df = exp ( log( hiFreq / loFreq ) / double( numNotches - 1 ) );
+    const double df = exp( log( hiFreq / loFreq ) / double( numNotches - 1 ) );
     double cf = 1.0;
     const double loRadsPerSample = loFreq * ( 2.0 * DDC_PI ) / sr;
     
     for ( int j = 0; j < numNotches; j++ )
     {
-        notch[j].init ( cf * loRadsPerSample, pow( cf, f_exp ) );
+        notch[j].init( cf * loRadsPerSample, pow( cf, f_exp ) );
         cf *= df;
-    }
-}
-
-Notchbank::~Notchbank()
-{
+    }	
 }
 
 void Notchbank::process( float** inputs, float** outputs,
@@ -82,7 +86,7 @@ void Notchbank::process( float** inputs, float** outputs,
 			outputs[ c ][ i ] = float( y );
 		}
 			
-		// Update trig functions
+		// update trig functions
 		for( int j = 0; j < numNotches; j++ )
 		{
 			notch[ j ].update();
