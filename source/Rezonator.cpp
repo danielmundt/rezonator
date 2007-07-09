@@ -134,12 +134,48 @@ void Rezonator::processDoubleReplacing( double** inputs, double** outputs,
 }
 
 /* typedef int aint __attribute__ ((__aligned__(16)));
-void foo (int n, aint * p, aint * q) {
+void foo(int n, aint * __restrict__ p, aint * __restrict__ q)
+{
 
-   // feature: support for (aligned) pointer accesses.
-   while (n--)
-   {
-      *p++ = *q++;
-   }
+	// feature: support for (aligned) pointer accesses.
+	while (n--)
+	{
+		*p++ = *q++;
+	}
 } */
 
+/* typedef int aint __attribute__ ((__aligned__(16)));
+int a[256], b[256], c[256];
+void foo3(int n, aint * __restrict__ p, aint * __restrict__ q)
+{
+	int i, j;
+	int MAX = 100;
+
+	// feature: support for (aligned) pointer accesses
+	// feature: support for constants
+	while (n--)
+	{
+		*p++ = *q++ + 5;
+	}
+
+	// feature: support for read accesses with a compile time known misalignment
+	for (i=0; i<n; i++)
+	{
+		a[i] = b[i+1] + c[i+3];
+	}
+
+	// feature: support for if-conversion
+	for (i=0; i<n; i++)
+	{
+		j = a[i];
+		b[i] = (j > MAX ? MAX : 0);
+	}
+} */
+
+/* void foo2(int n, int * p, int * q)
+{
+	while (n--)
+	{
+		*p++ = *q++;
+	}
+} */

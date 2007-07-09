@@ -857,7 +857,7 @@
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/rezonator}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/rezonator/vstsdk}&quot;"/>
 </option>
-<option id="gnu.cpp.compiler.option.other.other.1235676983" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -ftree-vectorize -msse2 -ftree-vectorizer-verbose=6 -ffast-math -funroll-loops " valueType="string"/>
+<option id="gnu.cpp.compiler.option.other.other.1235676983" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -ftree-vectorize -msse2 -ftree-vectorizer-verbose=6 -ffast-math -funroll-loops" valueType="string"/>
 <option id="gnu.cpp.compiler.option.optimization.level.1986781446" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1978481303" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
