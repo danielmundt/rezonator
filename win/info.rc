@@ -1,7 +1,7 @@
 #include <winver.h>
 
 #define REZONATOR_VER 1,0,0,0
-#define REZONATOR_VER_STR "1,0,0,0\0"
+#define REZONATOR_VER_STR "1.0.0.0\0"
 
 LANGUAGE 0x09,0x01
 
