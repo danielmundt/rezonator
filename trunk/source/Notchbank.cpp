@@ -81,8 +81,7 @@ void Notchbank::process( float** inputs, float** outputs,
 				accum = accum * lambda1 + x * nn.ca * nn.coeff * kappa1;
 				remod = remod * lambda2 + accum * kappa2;
 				y += nn.sa * remod;
-			}
-				
+			}	
 			outputs[ c ][ i ] = float( y );
 		}
 			
