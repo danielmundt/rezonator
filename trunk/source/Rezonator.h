@@ -35,7 +35,7 @@ public:
 		VstInt32 sampleFrames );
 	virtual void processDoubleReplacing( double** inputs, double** outputs,
 		VstInt32 sampleFrames );
-
+	
 	// Program
 	virtual void setProgramName( char* name );
 	virtual void getProgramName( char* name );
