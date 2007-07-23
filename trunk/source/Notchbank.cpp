@@ -63,16 +63,20 @@ void Notchbank::init()
     }	
 }
 
+#define SIZE 100
+
 void Notchbank::process( float** inputs, float** outputs,
 	VstInt32 sampleFrames )
 {
+//#pragma omp parallel shared(sampleFrames, c) private(i)
+//#pragma omp for nowait
 	for( int i = 0; i < sampleFrames; i++ )
 	{
 		for( int c = 0; c < numChannels; c++ )
 		{
 			double y = 0.0; // output value
 			double x = double( inputs[ c ][ i ] );
-			
+
 			for( int j = 0; j < numNotches; j++ )
 			{
 				Notch &nn = notch[ j ];
@@ -81,7 +85,7 @@ void Notchbank::process( float** inputs, float** outputs,
 				accum = accum * lambda1 + x * nn.ca * nn.coeff * kappa1;
 				remod = remod * lambda2 + accum * kappa2;
 				y += nn.sa * remod;
-			}	
+			}
 			outputs[ c ][ i ] = float( y );
 		}
 			
@@ -90,7 +94,23 @@ void Notchbank::process( float** inputs, float** outputs,
 		{
 			notch[ j ].update();
 		}
+	} /*-- End of parallel region --*/
+	
+	double A[SIZE][SIZE];
+	double col[SIZE], row[SIZE];
+	int i, j, k;
+	
+//	#ifdef _OPENMP
+	#pragma omp parallel shared(A, row, col) private(i)
+	#pragma omp for nowait
+//	#endif
+	for (i = k+1; i<SIZE; i++)
+	{
+		for (j = k+1; j<SIZE; j++)
+		{
+			A[i][j] = A[i][j] - row[i] * col[j];
+		}
 	}
 }
-
+	
 }
